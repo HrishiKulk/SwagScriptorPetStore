@@ -1,3 +1,5 @@
+// Generated on: 2025-08-24T05:53:09.387Z
+// Auto-generated API tests for user endpoints
 import { test, expect } from '@playwright/test';
 
 test.describe('user API Tests', () => {
