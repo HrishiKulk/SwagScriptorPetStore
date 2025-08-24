@@ -1,3 +1,5 @@
+// Generated on: 2025-08-24T05:53:09.386Z
+// Auto-generated API tests for pet endpoints
 import { test, expect } from '@playwright/test';
 
 test.describe('pet API Tests', () => {
