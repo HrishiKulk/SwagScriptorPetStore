@@ -1,4 +1,4 @@
-// Generated on: 2025-08-24T05:53:09.387Z
+// Generated on: 2025-08-25T09:44:52.321Z
 // Auto-generated API tests for user endpoints
 import { test, expect } from '@playwright/test';
 
