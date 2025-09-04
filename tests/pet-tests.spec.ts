@@ -1,8 +1,10 @@
-// Generated on: 2025-08-25T09:44:52.319Z
+// Generated on: September 4, 2025 at 4:52:38 PM GMT+5:30
 // Auto-generated API tests for pet endpoints
 import { test, expect } from '@playwright/test';
 
 test.describe('pet API Tests', () => {
+  // Base URL for this test suite; override via env var when running in CI
+  const baseUrl = process.env.API_BASE_URL || 'https://api.example.com';
   // /pet/{petId}/uploadImage - POST
   test('uploads an image - Positive Scenario', async ({ request }) => {
     // uploads an image
@@ -10,15 +12,9 @@ test.describe('pet API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.post('/pet/123/uploadImage', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE',
-      'Content-Type': 'application/json'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -76,13 +72,13 @@ test.describe('pet API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/pet/invalid/uploadImage';
       
-      const response = await request.post(invalidUrl);
+      const response = await request.post(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
   
     test('uploads an image - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.post('/pet/123/uploadImage');
+      const response = await request.post(baseUrl + '/pet/123/uploadImage');
       
       expect([401, 403]).toContain(response.status());
     });
@@ -94,15 +90,9 @@ test.describe('pet API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.post('/pet', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE',
-      'Content-Type': 'application/json'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -155,7 +145,7 @@ test.describe('pet API Tests', () => {
 
     test('Add a new pet to the store - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.post('/pet');
+      const response = await request.post(baseUrl + '/pet');
       
       expect([401, 403]).toContain(response.status());
     });
@@ -167,15 +157,9 @@ test.describe('pet API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.put('/pet', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE',
-      'Content-Type': 'application/json'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -228,7 +212,7 @@ test.describe('pet API Tests', () => {
 
     test('Update an existing pet - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.put('/pet');
+      const response = await request.put(baseUrl + '/pet');
       
       expect([401, 403]).toContain(response.status());
     });
@@ -244,7 +228,8 @@ test.describe('pet API Tests', () => {
       'status': 'test_value'
     },
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -305,7 +290,7 @@ test.describe('pet API Tests', () => {
 
     test('Finds Pets by status - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.get('/pet/findByStatus');
+      const response = await request.get(baseUrl + '/pet/findByStatus');
       
       expect([401, 403]).toContain(response.status());
     });
@@ -321,7 +306,8 @@ test.describe('pet API Tests', () => {
       'tags': 'test_value'
     },
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -382,7 +368,7 @@ test.describe('pet API Tests', () => {
 
     test('Finds Pets by tags - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.get('/pet/findByTags');
+      const response = await request.get(baseUrl + '/pet/findByTags');
       
       expect([401, 403]).toContain(response.status());
     });
@@ -395,7 +381,8 @@ test.describe('pet API Tests', () => {
     const startTime = Date.now();
     const response = await request.get('/pet/123', {
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -457,13 +444,13 @@ test.describe('pet API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/pet/invalid';
       
-      const response = await request.get(invalidUrl);
+      const response = await request.get(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
   
     test('Find pet by ID - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.get('/pet/123');
+      const response = await request.get(baseUrl + '/pet/123');
       
       expect([401, 403]).toContain(response.status());
     });
@@ -475,15 +462,9 @@ test.describe('pet API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.post('/pet/123', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE',
-      'Content-Type': 'application/json'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -539,13 +520,13 @@ test.describe('pet API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/pet/invalid';
       
-      const response = await request.post(invalidUrl);
+      const response = await request.post(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
   
     test('Updates a pet in the store with form data - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.post('/pet/123');
+      const response = await request.post(baseUrl + '/pet/123');
       
       expect([401, 403]).toContain(response.status());
     });
@@ -558,7 +539,8 @@ test.describe('pet API Tests', () => {
     const startTime = Date.now();
     const response = await request.delete('/pet/123', {
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -615,13 +597,13 @@ test.describe('pet API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/pet/invalid';
       
-      const response = await request.delete(invalidUrl);
+      const response = await request.delete(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
   
     test('Deletes a pet - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.delete('/pet/123');
+      const response = await request.delete(baseUrl + '/pet/123');
       
       expect([401, 403]).toContain(response.status());
     });
