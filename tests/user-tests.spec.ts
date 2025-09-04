@@ -1,8 +1,10 @@
-// Generated on: 2025-08-25T09:44:52.321Z
+// Generated on: September 4, 2025 at 4:52:38 PM GMT+5:30
 // Auto-generated API tests for user endpoints
 import { test, expect } from '@playwright/test';
 
 test.describe('user API Tests', () => {
+  // Base URL for this test suite; override via env var when running in CI
+  const baseUrl = process.env.API_BASE_URL || 'https://api.example.com';
   // /user/createWithList - POST
   test('Creates list of users with given input array - Positive Scenario', async ({ request }) => {
     // Creates list of users with given input array
@@ -10,14 +12,8 @@ test.describe('user API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.post('/user/createWithList', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json'
     }
   });
     
@@ -77,7 +73,11 @@ test.describe('user API Tests', () => {
     
     // Measure response time for performance validation
     const startTime = Date.now();
-    const response = await request.get('/user/123');
+    const response = await request.get('/user/123', {
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
     
     // Verify successful response status
     expect(response.status()).toBe(200);
@@ -136,7 +136,7 @@ test.describe('user API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/user/invalid';
       
-      const response = await request.get(invalidUrl);
+      const response = await request.get(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
 
@@ -147,14 +147,8 @@ test.describe('user API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.put('/user/123', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json'
     }
   });
     
@@ -209,7 +203,7 @@ test.describe('user API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/user/invalid';
       
-      const response = await request.put(invalidUrl);
+      const response = await request.put(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
 
@@ -219,7 +213,11 @@ test.describe('user API Tests', () => {
     
     // Measure response time for performance validation
     const startTime = Date.now();
-    const response = await request.delete('/user/123');
+    const response = await request.delete('/user/123', {
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
     
     
     // Validate response time (should be under 5 seconds for most APIs)
@@ -272,7 +270,7 @@ test.describe('user API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/user/invalid';
       
-      const response = await request.delete(invalidUrl);
+      const response = await request.delete(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
 
@@ -286,6 +284,9 @@ test.describe('user API Tests', () => {
     params: {
       'username': 'test_value',
       'password': 'test_value'
+    },
+    headers: {
+      'Accept': 'application/json'
     }
   });
     
@@ -351,7 +352,11 @@ test.describe('user API Tests', () => {
     
     // Measure response time for performance validation
     const startTime = Date.now();
-    const response = await request.get('/user/logout');
+    const response = await request.get('/user/logout', {
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
     
     // Verify successful response status
     expect(response.status()).toBe(200);
@@ -414,14 +419,8 @@ test.describe('user API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.post('/user/createWithArray', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json'
     }
   });
     
@@ -482,14 +481,8 @@ test.describe('user API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.post('/user', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json'
     }
   });
     
