@@ -1,8 +1,10 @@
-// Generated on: 2025-08-25T09:44:52.321Z
+// Generated on: September 4, 2025 at 4:52:38 PM GMT+5:30
 // Auto-generated API tests for store endpoints
 import { test, expect } from '@playwright/test';
 
 test.describe('store API Tests', () => {
+  // Base URL for this test suite; override via env var when running in CI
+  const baseUrl = process.env.API_BASE_URL || 'https://api.example.com';
   // /store/inventory - GET
   test('Returns pet inventories by status - Positive Scenario', async ({ request }) => {
     // Returns a map of status codes to quantities
@@ -11,7 +13,8 @@ test.describe('store API Tests', () => {
     const startTime = Date.now();
     const response = await request.get('/store/inventory', {
     headers: {
-      'Authorization': 'Bearer YOUR_TOKEN_HERE'
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${process.env.API_TOKEN || ''}`
     }
   });
     
@@ -70,7 +73,7 @@ test.describe('store API Tests', () => {
 
     test('Returns pet inventories by status - Unauthorized Access', async ({ request }) => {
       // Test without authentication
-      const response = await request.get('/store/inventory');
+      const response = await request.get(baseUrl + '/store/inventory');
       
       expect([401, 403]).toContain(response.status());
     });
@@ -82,14 +85,8 @@ test.describe('store API Tests', () => {
     // Measure response time for performance validation
     const startTime = Date.now();
     const response = await request.post('/store/order', {
-    data: {
-        // TODO: Replace with actual request body data based on your API requirements
-        "id": 123,
-        "name": "Test Item",
-        "description": "Sample description for testing"
-      },
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json'
     }
   });
     
@@ -149,7 +146,11 @@ test.describe('store API Tests', () => {
     
     // Measure response time for performance validation
     const startTime = Date.now();
-    const response = await request.get('/store/order/123');
+    const response = await request.get('/store/order/123', {
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
     
     // Verify successful response status
     expect(response.status()).toBe(200);
@@ -208,7 +209,7 @@ test.describe('store API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/store/order/invalid';
       
-      const response = await request.get(invalidUrl);
+      const response = await request.get(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
 
@@ -218,7 +219,11 @@ test.describe('store API Tests', () => {
     
     // Measure response time for performance validation
     const startTime = Date.now();
-    const response = await request.delete('/store/order/123');
+    const response = await request.delete('/store/order/123', {
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
     
     
     // Validate response time (should be under 5 seconds for most APIs)
@@ -271,7 +276,7 @@ test.describe('store API Tests', () => {
       // Test with missing required path parameter
       const invalidUrl = '/store/order/invalid';
       
-      const response = await request.delete(invalidUrl);
+      const response = await request.delete(baseUrl + invalidUrl);
       expect([400, 404]).toContain(response.status());
     });
 });
