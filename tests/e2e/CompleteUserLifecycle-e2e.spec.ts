@@ -86,7 +86,7 @@ test.describe('Complete User Lifecycle', () => {
     const step4Data = await step4Response.json();
     console.log('Step 4 response:', step4Data);
     
-    // Store response data for next steps
+    // Store response data for next steps - lets see
     scenarioContext.step4 = step4Data;
 
     
