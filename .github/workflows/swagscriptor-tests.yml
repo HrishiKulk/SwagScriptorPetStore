@@ -21,6 +21,21 @@ jobs:
       with:
         node-version: '18'
         cache: 'npm'
+
+    # Generate package-lock.json if missing
+    - name: Ensure package-lock.json exists
+      run: |
+          if [ ! -f package-lock.json ]; then
+            echo "No package-lock.json found, generating..."
+            npm install --package-lock
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add package-lock.json
+            git commit -m "Auto-generate package-lock.json"
+            git push
+          else
+            echo "package-lock.json already exists"
+          fi
         
     - name: Install Playwright
       run: |
